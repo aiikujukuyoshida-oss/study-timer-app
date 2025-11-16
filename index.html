@@ -1,1 +1,65 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Study Timer</title><link rel="stylesheet" href="style.css"/></head><body><h1>Study Timer</h1><p>ここに後でUIを作ります。</p><script src="script.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Study Timer</title>
+
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f5f5f5;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .timer-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  .display {
+    font-size: 48px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4CAF50;
+    color: white;
+  }
+  button:active {
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<h1>Study Timer</h1>
+
+<div class="timer-container">
+  <div id="modeDisplay" style="text-align:center; font-size:20px; margin-bottom:10px;">
+    集中タイム
+  </div>
+
+  <div id="timeDisplay" class="display">20:00</div>
+
+  <button id="startBtn">▶ スタート</button>
+  <button id="stopBtn" style="background:#f44336;">■ ストップ</button>
+  <button id="resetBtn" style="background:#777;">↺ リセット</button>
+</div>
