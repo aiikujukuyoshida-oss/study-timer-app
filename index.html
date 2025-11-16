@@ -122,3 +122,67 @@ updateDisplay();
 
 </body>
 </html>
+<script>
+let mode = "work"; // work = 集中, break = 休憩
+let time = 20 * 60; // 初期は20分
+let timer = null;
+
+const modeDisplay = document.getElementById("modeDisplay");
+const timeDisplay = document.getElementById("timeDisplay");
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+function updateDisplay() {
+  const m = String(Math.floor(time / 60)).padStart(2, "0");
+  const s = String(time % 60).padStart(2, "0");
+  timeDisplay.textContent = `${m}:${s}`;
+}
+
+function switchMode() {
+  if (mode === "work") {
+    mode = "break";
+    time = 5 * 60; // 休憩5分
+    modeDisplay.textContent = "休憩タイム";
+  } else {
+    mode = "work";
+    time = 20 * 60; // 集中20分
+    modeDisplay.textContent = "集中タイム";
+  }
+  updateDisplay();
+}
+
+startBtn.onclick = () => {
+  if (timer !== null) return;
+
+  timer = setInterval(() => {
+    time--;
+    updateDisplay();
+
+    if (time <= 0) {
+      clearInterval(timer);
+      timer = null;
+      switchMode();
+    }
+  }, 1000);
+};
+
+stopBtn.onclick = () => {
+  clearInterval(timer);
+  timer = null;
+};
+
+resetBtn.onclick = () => {
+  clearInterval(timer);
+  timer = null;
+
+  if (mode === "work") {
+    time = 20 * 60;
+  } else {
+    time = 5 * 60;
+  }
+  updateDisplay();
+};
+
+updateDisplay();
+</script>
