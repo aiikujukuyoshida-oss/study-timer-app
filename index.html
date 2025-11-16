@@ -63,3 +63,62 @@
   <button id="stopBtn" style="background:#f44336;">■ ストップ</button>
   <button id="resetBtn" style="background:#777;">↺ リセット</button>
 </div>
+
+<script>
+let mode = "focus";
+let timeLeft = 20 * 60;
+let timer = null;
+
+function updateDisplay() {
+  const m = String(Math.floor(timeLeft / 60)).padStart(2, "0");
+  const s = String(timeLeft % 60).padStart(2, "0");
+  document.getElementById("timeDisplay").textContent = `${m}:${s}`;
+}
+
+function switchMode() {
+  if (mode === "focus") {
+    mode = "break";
+    timeLeft = 5 * 60;
+    document.getElementById("modeDisplay").textContent = "休憩タイム";
+  } else {
+    mode = "focus";
+    timeLeft = 20 * 60;
+    document.getElementById("modeDisplay").textContent = "集中タイム";
+  }
+  updateDisplay();
+}
+
+document.getElementById("startBtn").onclick = () => {
+  if (timer) return;
+
+  timer = setInterval(() => {
+    timeLeft--;
+    updateDisplay();
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      timer = null;
+      switchMode();
+    }
+  }, 1000);
+};
+
+document.getElementById("stopBtn").onclick = () => {
+  clearInterval(timer);
+  timer = null;
+};
+
+document.getElementById("resetBtn").onclick = () => {
+  clearInterval(timer);
+  timer = null;
+  mode = "focus";
+  timeLeft = 20 * 60;
+  document.getElementById("modeDisplay").textContent = "集中タイム";
+  updateDisplay();
+};
+
+updateDisplay();
+</script>
+
+</body>
+</html>
