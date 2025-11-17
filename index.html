@@ -10,38 +10,29 @@
   <div class="wrap">
     <header>
       <h1>学習タイマー「超集中」</h1>
-      <div class="meta">ダーク・メタリック｜BGMデフォルト: Fire</div>
+      <div class="meta">ダーク・メタリック｜デフォルトBGM: Fire</div>
     </header>
 
     <section class="controls">
       <div class="row">
-        <label>集中時間
-          <select id="focusTime"></select>
-        </label>
-        <label>休憩時間
-          <select id="breakTime"></select>
-        </label>
         <label>セット数
-          <select id="setCount"></select>
-        </label>
-      </div>
-
-      <div class="row">
-        <label>BGM
-          <select id="bgmSelect"></select>
+          <select id="setCountSelect"></select>
         </label>
         <label>音量
           <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
         </label>
-        <label><input id="mute" type="checkbox" /> ミュート</label>
+        <label><input id="mute" type="checkbox" id="muteBox" /> ミュート</label>
+      </div>
+
+      <div id="setsConfig" class="sets-config">
+        <!-- set rows injected here -->
       </div>
 
       <div class="preset-row">
-        <button id="savePreset">プリセット保存</button>
-        <select id="presetSelect"><option value="">プリセットを選択</option></select>
         <button id="savePreset1">保存1</button>
         <button id="savePreset2">保存2</button>
         <button id="savePreset3">保存3</button>
+        <select id="presetSelect"><option value="">プリセットを選択</option></select>
       </div>
     </section>
 
@@ -62,10 +53,6 @@
     </section>
 
     <section class="extra">
-      <div class="sets-edit">
-        <label>セット順（ドラッグ未対応）</label>
-        <div id="setsList"></div>
-      </div>
       <div id="status">最初に「スタート」を押すと音が許可されます。</div>
     </section>
   </div>
