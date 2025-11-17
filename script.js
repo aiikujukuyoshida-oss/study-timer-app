@@ -16,9 +16,7 @@ const bgmSelectBreak = document.getElementById("bgmBreak");
 let currentSet = 1;
 
 // --- 音声 ---
-const audioChimeWork = new Audio("audio/chime_work.wav");   // 集中終了5秒前
-const audioChimeBreak = new Audio("audio/chime_break.wav"); // 休憩終了5秒前
-
+const audioChime = new Audio("audio/chime.wav");
 let audioBGM = new Audio();
 audioBGM.loop = true;
 
@@ -31,9 +29,6 @@ function updateDisplay() {
 
 // --- BGMの再生（集中/休憩で別の曲） ---
 function playBGM() {
-  audioBGM.pause();
-  audioBGM.currentTime = 0;
-
   if (mode === "work") {
     audioBGM.src = bgmSelectWork.value;
   } else {
@@ -74,15 +69,10 @@ startBtn.onclick = () => {
     time--;
     updateDisplay();
 
-    // --- 残り5秒でチャイム（集中/休憩で別々） ---
+    // --- 残り5秒でチャイム ---
     if (time === 5) {
-      if (mode === "work") {
-        audioChimeWork.currentTime = 0;
-        audioChimeWork.play();
-      } else {
-        audioChimeBreak.currentTime = 0;
-        audioChimeBreak.play();
-      }
+      audioChime.currentTime = 0;
+      audioChime.play();
     }
 
     if (time <= 0) {
@@ -113,13 +103,18 @@ resetBtn.onclick = () => {
   audioBGM.pause();
 };
 
-// --- 集中中 / 休憩中にBGM変更即反映 ---
+// --- 集中中にBGM変更したら即反映（B案） ---
 bgmSelectWork.onchange = () => {
-  if (mode === "work" && timer !== null) playBGM();
+  if (mode === "work" && timer !== null) {
+    playBGM();
+  }
 };
 
+// --- 休憩中にBGM変更したら即反映（B案） ---
 bgmSelectBreak.onchange = () => {
-  if (mode === "break" && timer !== null) playBGM();
+  if (mode === "break" && timer !== null) {
+    playBGM();
+  }
 };
 
 updateDisplay();
