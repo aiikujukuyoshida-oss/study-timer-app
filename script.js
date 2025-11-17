@@ -248,24 +248,42 @@ setCountSelect.onchange = ()=>{
 };
 
 startBtn.onclick = async ()=>{
-  // unlock audio with a short chime under user gesture
-  try{ await safePlay(chimeAudio); chimeAudio.pause(); chimeAudio.currentTime = 0; }catch(e){}
+  // すでに動作中なら無視
+  if(timer) return;
+
+  // === 再開の場合（remaining が減っている = 一時停止中） ===
+  if(remaining > 0 && statusEl.textContent === '停止'){
+    startTimer();
+    startBtn.textContent = 'スタート';
+    return;
+  }
+
+  // === 初回スタート ===
+  try{ 
+    await safePlay(chimeAudio); 
+    chimeAudio.pause(); 
+    chimeAudio.currentTime = 0; 
+  }catch(e){}
+
   isMuted = muteEl.checked;
   applyVolume();
-  // read config and start
+
   CONFIG = readSetsConfig();
   setCount = CONFIG.length;
   currentIndex = 0;
   phase = 'focus';
   remaining = CONFIG[0].focusMin * UNIT;
-  // prepare bgm and start
+
+  // bgm
   if(CONFIG[0].focusBgm){
     bgmAudio.src = BASE + encodeURIComponent(CONFIG[0].focusBgm);
     bgmAudio.load();
     safePlay(bgmAudio).catch(()=>{});
   }
+
   updateUI();
   startTimer();
+  startBtn.textContent = 'スタート';
 };
 
 pauseBtn.onclick = ()=>{ stopTimer(); };
