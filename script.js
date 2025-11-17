@@ -168,11 +168,11 @@ async function safePlay(el){
     try{ await el.play(); }catch(_){}
   }
 }
-
 function applyVolume(){
   const vol = parseFloat(volumeEl.value || 0.6);
+
   bgmAudio.volume = isMuted ? 0 : vol;
-  chimeAudio.volume = isMuted ? 0 : vol;
+  chimeAudio.volume = isMuted ? 0 : 1.0;   // チャイムだけ最大
 }
 
 // UI update
