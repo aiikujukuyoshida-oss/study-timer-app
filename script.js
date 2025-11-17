@@ -1,4 +1,4 @@
-/* 完全版 script.js（修正版）
+/* 完全版 script.js（GitHub Pages専用）
    - 各セットごとに集中/休憩時間を設定（A方式）
    - 各セットごとに集中BGM / 休憩BGM 選択（C=YES）
    - chime は集中終了5秒前・休憩終了5秒前に必ず鳴らす（chime.wav固定）
@@ -53,7 +53,7 @@ chimeAudio.src = BASE + encodeURIComponent(CHIME_FILE);
 
 // state
 let setCount = 6;
-let sets = []; // array of {focusInp, breakInp, focusSel, breakSel}
+let sets = []; // array of {focusMin, breakMin, focusBgm, breakBgm}
 let currentIndex = 0; // 0-based
 let phase = 'focus'; // 'focus' or 'break'
 let remaining = 0;
@@ -87,8 +87,7 @@ function createSetRow(i){
   const noneOpt = document.createElement('option'); noneOpt.value=''; noneOpt.textContent='(なし)';
   focusSel.appendChild(noneOpt.cloneNode(true)); breakSel.appendChild(noneOpt.cloneNode(true));
   BGM_LIST.forEach(b=>{ const o=document.createElement('option'); o.value=b.file; o.textContent=b.name; focusSel.appendChild(o); breakSel.appendChild(o.cloneNode(true)); });
-  // ← **ここで初期値を強制していた行を削除しました（重要）**
-  // focusSel.value = BGM_LIST[0].file; // default focus BGM = Fire
+  focusSel.value = BGM_LIST[0].file; // default focus BGM = Fire
 
   // styling
   [focusInp, breakInp, focusSel, breakSel].forEach(el=>{
