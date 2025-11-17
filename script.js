@@ -150,7 +150,7 @@ function updateUI(){
 
 // tick handler
 function tick(){
-  if(remaining === 4){
+  if(remaining === 5){
     // 4秒前チャイム
     safePlay(chimeAudio).catch(()=>{});
   }
