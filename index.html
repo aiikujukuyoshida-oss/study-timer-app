@@ -1,188 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Study Timer</title>
-
-<style>
-  body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 20px;
-    background: #f5f5f5;
-  }
-
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .timer-container {
-    max-width: 400px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-
-  .display {
-    font-size: 48px;
-    text-align: center;
-    margin: 20px 0;
-  }
-
-  button {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #4CAF50;
-    color: white;
-  }
-  button:active {
-    opacity: 0.8;
-  }
-</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>学習タイマー「超集中」</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <h1>学習タイマー「超集中」</h1>
+      <div class="meta">ダーク・メタリック｜BGMデフォルト: Fire</div>
+    </header>
 
-<h1>Study Timer</h1>
+    <section class="controls">
+      <div class="row">
+        <label>集中時間
+          <select id="focusTime"></select>
+        </label>
+        <label>休憩時間
+          <select id="breakTime"></select>
+        </label>
+        <label>セット数
+          <select id="setCount"></select>
+        </label>
+      </div>
 
-<div class="timer-container">
-  <div id="modeDisplay" style="text-align:center; font-size:20px; margin-bottom:10px;">
-    集中タイム
+      <div class="row">
+        <label>BGM
+          <select id="bgmSelect"></select>
+        </label>
+        <label>音量
+          <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
+        </label>
+        <label><input id="mute" type="checkbox" /> ミュート</label>
+      </div>
+
+      <div class="preset-row">
+        <button id="savePreset">プリセット保存</button>
+        <select id="presetSelect"><option value="">プリセットを選択</option></select>
+        <button id="savePreset1">保存1</button>
+        <button id="savePreset2">保存2</button>
+        <button id="savePreset3">保存3</button>
+      </div>
+    </section>
+
+    <section class="display">
+      <div id="phase">準備中</div>
+      <div id="timeLarge">00:00</div>
+      <div id="setInfo">セット: 0 / 0</div>
+    </section>
+
+    <section class="controls buttons">
+      <button id="startBtn" class="primary">スタート</button>
+      <button id="pauseBtn">一時停止</button>
+      <button id="resetBtn">リセット</button>
+      <button id="prevBtn">戻る</button>
+      <button id="back10Btn">-10秒</button>
+      <button id="skip10Btn">+10秒</button>
+      <button id="nextBtn">次へ</button>
+    </section>
+
+    <section class="extra">
+      <div class="sets-edit">
+        <label>セット順（ドラッグ未対応）</label>
+        <div id="setsList"></div>
+      </div>
+      <div id="status">最初に「スタート」を押すと音が許可されます。</div>
+    </section>
   </div>
 
-  <div id="timeDisplay" class="display">20:00</div>
-
-  <button id="startBtn">▶ スタート</button>
-  <button id="stopBtn" style="background:#f44336;">■ ストップ</button>
-  <button id="resetBtn" style="background:#777;">↺ リセット</button>
-</div>
-
-<script>
-let mode = "focus";
-let timeLeft = 20 * 60;
-let timer = null;
-
-function updateDisplay() {
-  const m = String(Math.floor(timeLeft / 60)).padStart(2, "0");
-  const s = String(timeLeft % 60).padStart(2, "0");
-  document.getElementById("timeDisplay").textContent = `${m}:${s}`;
-}
-
-function switchMode() {
-  if (mode === "focus") {
-    mode = "break";
-    timeLeft = 5 * 60;
-    document.getElementById("modeDisplay").textContent = "休憩タイム";
-  } else {
-    mode = "focus";
-    timeLeft = 20 * 60;
-    document.getElementById("modeDisplay").textContent = "集中タイム";
-  }
-  updateDisplay();
-}
-
-document.getElementById("startBtn").onclick = () => {
-  if (timer) return;
-
-  timer = setInterval(() => {
-    timeLeft--;
-    updateDisplay();
-
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      timer = null;
-      switchMode();
-    }
-  }, 1000);
-};
-
-document.getElementById("stopBtn").onclick = () => {
-  clearInterval(timer);
-  timer = null;
-};
-
-document.getElementById("resetBtn").onclick = () => {
-  clearInterval(timer);
-  timer = null;
-  mode = "focus";
-  timeLeft = 20 * 60;
-  document.getElementById("modeDisplay").textContent = "集中タイム";
-  updateDisplay();
-};
-
-updateDisplay();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
-<script>
-let mode = "work"; // work = 集中, break = 休憩
-let time = 20 * 60; // 初期は20分
-let timer = null;
-
-const modeDisplay = document.getElementById("modeDisplay");
-const timeDisplay = document.getElementById("timeDisplay");
-const startBtn = document.getElementById("startBtn");
-const stopBtn = document.getElementById("stopBtn");
-const resetBtn = document.getElementById("resetBtn");
-
-function updateDisplay() {
-  const m = String(Math.floor(time / 60)).padStart(2, "0");
-  const s = String(time % 60).padStart(2, "0");
-  timeDisplay.textContent = `${m}:${s}`;
-}
-
-function switchMode() {
-  if (mode === "work") {
-    mode = "break";
-    time = 5 * 60; // 休憩5分
-    modeDisplay.textContent = "休憩タイム";
-  } else {
-    mode = "work";
-    time = 20 * 60; // 集中20分
-    modeDisplay.textContent = "集中タイム";
-  }
-  updateDisplay();
-}
-
-startBtn.onclick = () => {
-  if (timer !== null) return;
-
-  timer = setInterval(() => {
-    time--;
-    updateDisplay();
-
-    if (time <= 0) {
-      clearInterval(timer);
-      timer = null;
-      switchMode();
-    }
-  }, 1000);
-};
-
-stopBtn.onclick = () => {
-  clearInterval(timer);
-  timer = null;
-};
-
-resetBtn.onclick = () => {
-  clearInterval(timer);
-  timer = null;
-
-  if (mode === "work") {
-    time = 20 * 60;
-  } else {
-    time = 5 * 60;
-  }
-  updateDisplay();
-};
-
-updateDisplay();
-</script>
