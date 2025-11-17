@@ -53,7 +53,7 @@ chimeAudio.src = BASE + encodeURIComponent(CHIME_FILE);
 
 // state
 let setCount = 6;
-let sets = []; // array of {focusMin, breakMin, focusBgm, breakBgm}
+let sets = []; // array of {focusInp, breakInp, focusSel, breakSel}
 let currentIndex = 0; // 0-based
 let phase = 'focus'; // 'focus' or 'break'
 let remaining = 0;
@@ -242,8 +242,6 @@ function setBgmForPhase(filename){
   // try to play - will succeed if user already interacted
   safePlay(bgmAudio).catch(()=>{});
 }
-
-let CONFIG = [];
 
 // prepare from UI
 function prepare(){
