@@ -11,26 +11,26 @@ body{
   font-family:system-ui,Roboto,Arial;
 }
 
-/* ★ 左右レイアウトにする重要ポイント */
+/* ================================
+      レイアウト最適化（おまかせ）
+   ================================ */
 .wrap{
   max-width:900px;
   margin:18px auto;
   padding:18px;
 
-  display:flex;          /* ← 左右並び */
-  gap:20px;              /* ← 間隔 */
-  align-items:flex-start; /* ← 上揃え */
+  display:flex;
+  gap:22px;
+  align-items:flex-start;
 }
 
-/* 左側（セット数・BGM・時間調整） */
+/* 左側パネル */
 .controls{
   background:linear-gradient(180deg,#0b0d10,#0f1114);
-  padding:12px;
-  border-radius:10px;
+  padding:14px;
+  border-radius:12px;
+  width:42%;   /* ← おまかせ最適化 */
   margin-bottom:12px;
-  display:block;
-
-  width:40%;   /* ← 追加：左パネルの幅 */
 }
 
 .row{
@@ -100,28 +100,40 @@ input[type="range"]{
   cursor:pointer;
 }
 
-/* 右側（タイマー表示） */
+/* ================================
+         右側（タイマー）
+   ================================ */
 .display{
   background:var(--panel);
-  padding:18px;
+  padding:20px;
   border-radius:12px;
   text-align:center;
-  margin-bottom:12px;
-
-  width:60%;   /* ← 追加：タイマー部分の幅 */
+  width:58%;  /* ← おまかせ最適化 */
 }
 
+/* phase（超集中など） */
+#phase{
+  font-size:115px;   /* ← 調整済み */
+  color:#9aa3b2;
+  margin-bottom:10px;
+  line-height:1.1;
+}
+
+/* タイマー数字 */
 #timeLarge{
-  font-size:250px;
+  font-size:210px;  /* ← 調整済み */
   font-weight:900;
-  margin:6px 0;
+  margin:10px 0 14px;
   color:var(--accent2);
   letter-spacing:1px;
 }
 
 #phase{
-  font-size:150px;
-  color:#9aa3b2;
+  font-size:115px;
+}
+
+#timeLarge{
+  font-size:210px;
 }
 
 .buttons{
@@ -137,24 +149,26 @@ input[type="range"]{
 }
 
 #status{
-  margin-top:8px;
+  margin-top:10px;
   color:#9aa3b2;
   font-size:13px;
   text-align:center;
 }
 
-/* ★ スマホは縦並びへ戻す */
+/* スマホ向け最適化 */
 @media (max-width:520px){
-  #timeLarge{font-size:48px}
+  #timeLarge{font-size:64px}
+  #phase{font-size:40px}
+
   .row{flex-direction:column}
   .set-row{flex-direction:column;align-items:stretch}
 
   .wrap{
-    flex-direction:column;   /* ← スマホでは縦並び */
+    flex-direction:column;
   }
 
   .controls,
   .display{
-    width:100%;             /* ← 幅100% */
+    width:100%;
   }
 }
