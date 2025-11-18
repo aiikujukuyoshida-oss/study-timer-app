@@ -17,7 +17,7 @@ select,input[type="range"]{width:100%;padding:8px;border-radius:8px;background:#
 .preset-row button, .buttons button{padding:8px 10px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent1),#60cfff);color:#001;font-weight:800;cursor:pointer}
 .display{background:var(--panel);padding:18px;border-radius:12px;text-align:center;margin-bottom:12px}
 #timeLarge{font-size:72px;font-weight:900;margin:6px 0;color:var(--accent2);letter-spacing:1px}
-#phase{font-size:18px;color:#9aa3b2}
+#phase{font-size:50px;color:#9aa3b2}
 .buttons{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .primary{background:linear-gradient(90deg,var(--accent3),#6fbf6b);color:#021}
 #status{margin-top:8px;color:#9aa3b2;font-size:13px;text-align:center}
