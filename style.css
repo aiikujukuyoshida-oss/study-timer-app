@@ -1,48 +1,64 @@
 :root{
-  --bg:#071021; --panel:#0f1114; --accent1:#2fb0ff; --accent2:#ff9a3c; --accent3:#7db86b;
+  --bg:#071021; 
+  --panel:#0f1114; 
+  --accent1:#2fb0ff; 
+  --accent2:#ff9a3c; 
+  --accent3:#7db86b;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  background:radial-gradient(800px 300px at 10% 10%, #071021 0%, #071021 40%, #071021 100%);
+  background:#071021;
   color:#fff;
   font-family:system-ui,Roboto,Arial;
 }
 
 /* ================================
-      レイアウト最適化（おまかせ）
+      レイアウト（左右バランス）
    ================================ */
 .wrap{
-  max-width:900px;
-  margin:18px auto;
-  padding:18px;
+  max-width:1100px;
+  margin:20px auto;
+  padding:10px;
 
   display:flex;
-  gap:22px;
+  gap:20px;
   align-items:flex-start;
 }
 
-/* 左側パネル */
+/* 左側パネル ===================== */
 .controls{
   background:linear-gradient(180deg,#0b0d10,#0f1114);
-  padding:14px;
+  padding:18px;
   border-radius:12px;
-  width:42%;   /* ← おまかせ最適化 */
-  margin-bottom:12px;
+  width:45%;      /* ← 左右バランス改善 */
 }
 
+/* タイトル */
+.controls h1{
+  margin:0 0 4px 0;
+  font-size:26px;
+}
+
+.meta{
+  font-size:13px;
+  margin-bottom:10px;
+  color:#cfe9ff;
+}
+
+/* 行パーツ */
 .row{
   display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:8px;
+  gap:10px;
+  flex-wrap:nowrap;    /* ← 無駄改行防止 */
+  margin-bottom:10px;
 }
 
 label{
   flex:1;
-  min-width:140px;
+  min-width:120px;
   font-size:14px;
   color:#cfe9ff;
 }
@@ -53,44 +69,46 @@ input[type="range"]{
   padding:8px;
   border-radius:8px;
   background:#06101a;
-  border:1px solid rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.1);
   color:#fff;
   font-weight:700;
 }
 
+/* セット設定 */
 .set-row{
   display:flex;
   gap:8px;
   align-items:center;
+  flex-wrap:nowrap;   /* ← 改行抑制 */
   margin-bottom:6px;
 }
 
 .set-row input[type="number"]{
-  width:90px;
+  width:70px;
   padding:6px;
   border-radius:6px;
   background:#06101a;
-  border:1px solid rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.1);
   color:#fff;
   font-weight:700;
 }
 
 .set-row select{
+  width:100px;   /* ← BGM 選択しやすく */
   padding:6px;
   border-radius:6px;
   background:#06101a;
-  border:1px solid rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.1);
   color:#fff;
 }
 
 .preset-row{
   display:flex;
-  gap:8px;
-  margin-top:8px;
+  gap:10px;
+  margin-top:10px;
 }
 
-.preset-row button,
-.buttons button{
+.preset-row button{
   padding:8px 10px;
   border-radius:8px;
   border:none;
@@ -101,46 +119,57 @@ input[type="range"]{
 }
 
 /* ================================
-         右側（タイマー）
+           右側（タイマー）
    ================================ */
 .display{
   background:var(--panel);
   padding:20px;
   border-radius:12px;
+  width:55%;       /* ← 広げてバランス良化 */
   text-align:center;
-  width:58%;  /* ← おまかせ最適化 */
 }
 
-/* phase（超集中など） */
+/* phase（超集中など）中央揃え */
 #phase{
-  font-size:115px;   /* ← 調整済み */
+  font-size:90px;        /* ← やや縮小して中央揃え */
   color:#9aa3b2;
   margin-bottom:10px;
-  line-height:1.1;
+  line-height:1;
+  text-align:center;
 }
 
-/* タイマー数字 */
+/* タイマー（はみ出し防止） */
 #timeLarge{
-  font-size:210px;  /* ← 調整済み */
+  font-size:165px;       /* ← はみ出し防止で縮小 */
   font-weight:900;
-  margin:10px 0 14px;
+  margin:0 0 14px;
   color:var(--accent2);
-  letter-spacing:1px;
+  letter-spacing:2px;
+  text-align:center;
 }
 
-#phase{
-  font-size:115px;
+/* セット情報 */
+#setInfo{
+  margin-bottom:14px;
 }
 
-#timeLarge{
-  font-size:210px;
-}
-
+/* ボタン群 ======================== */
 .buttons{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
   justify-content:center;
+}
+
+.buttons button{
+  padding:8px 12px;
+  border-radius:8px;
+  border:none;
+  background:linear-gradient(90deg,var(--accent1),#60cfff);
+  color:#001;
+  font-weight:800;
+  cursor:pointer;
+  flex:0 0 auto;    /* ← 改行抑制 */
 }
 
 .primary{
@@ -149,20 +178,16 @@ input[type="range"]{
 }
 
 #status{
-  margin-top:10px;
+  margin-top:12px;
   color:#9aa3b2;
   font-size:13px;
   text-align:center;
 }
 
-/* スマホ向け最適化 */
+/* ================================
+        スマホ向け最適化
+   ================================ */
 @media (max-width:520px){
-  #timeLarge{font-size:64px}
-  #phase{font-size:40px}
-
-  .row{flex-direction:column}
-  .set-row{flex-direction:column;align-items:stretch}
-
   .wrap{
     flex-direction:column;
   }
@@ -171,4 +196,10 @@ input[type="range"]{
   .display{
     width:100%;
   }
+
+  #phase{font-size:42px;}
+  #timeLarge{font-size:88px;}
+
+  .row{flex-direction:column;}
+  .set-row{flex-direction:column; align-items:stretch;}
 }
