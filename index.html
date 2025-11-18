@@ -7,40 +7,34 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrap">
-    <!-- 左側：コントロール（セット設定など） -->
-    <section class="controls">
-      <header>
-        <h1>学習タイマー「超集中」</h1>
-        <div class="meta">ダーク・メタリック｜デフォルトBGM: Fire</div>
-      </header>
 
-      <!-- ★★★ 復活：集中・休憩 BGM 選択 ★★★ -->
-      <div class="bgm-row">
-        <label>集中BGM:
-          <select id="focusBgmSelect">
-            <option value="Fire">Fire</option>
-            <option value="Wind">Wind</option>
-            <option value="Forest">Forest</option>
-            <option value="None">なし</option>
-          </select>
-        </label>
-        <button id="focusPreview">試聴</button>
-      </div>
+  <div class="container">
 
-      <div class="bgm-row">
-        <label>休憩BGM:
-          <select id="breakBgmSelect">
-            <option value="Chime">Chime</option>
-            <option value="Clear">Clear</option>
-            <option value="Soft">Soft</option>
-            <option value="None">なし</option>
-          </select>
-        </label>
-        <button id="breakPreview">試聴</button>
-      </div>
-      <!-- ★★★ ここまで復活 ★★★ -->
+    <!-- ▼ 上部：メイン表示 ▼ -->
+    <section class="display">
+      <div id="phase" class="phase">超集中</div>
+      <div id="timeLarge" class="time-large">00:00</div>
+      <div id="setInfo" class="set-info">セット: 0 / 0</div>
+    </section>
 
+    <!-- ▼ ボタンエリア ▼ -->
+    <section class="buttons">
+      <button id="startBtn" class="btn primary">スタート</button>
+      <button id="pauseBtn" class="btn">一時停止</button>
+      <button id="resetBtn" class="btn">リセット</button>
+      <button id="prevBtn" class="btn">戻る</button>
+      <button id="back10Btn" class="btn">-10秒</button>
+      <button id="skip10Btn" class="btn">+10秒</button>
+      <button id="nextBtn" class="btn">次へ</button>
+    </section>
+
+    <!-- ▼ 注意書き ▼ -->
+    <div class="status-area">
+      <div id="status">最初に「スタート」を押すと音が許可されます。</div>
+    </div>
+
+    <!-- ▼ セット設定 ▼ -->
+    <section class="sets-area">
       <div class="row">
         <label>セット数
           <select id="setCountSelect"></select>
@@ -53,44 +47,22 @@
         <label><input id="mute" type="checkbox" /> ミュート</label>
       </div>
 
-      <div id="setsConfig" class="sets-config">
-        <!-- 各セットの行（JSで注入） -->
-      </div>
+      <div id="setsConfig"></div>
 
       <div class="preset-row">
-        <button id="savePreset1">保存1</button>
-        <button id="savePreset2">保存2</button>
-        <button id="savePreset3">保存3</button>
+        <button id="savePreset1" class="preset-btn">保存1</button>
+        <button id="savePreset2" class="preset-btn">保存2</button>
+        <button id="savePreset3" class="preset-btn">保存3</button>
+
         <select id="presetSelect">
           <option value="">プリセットを選択</option>
         </select>
       </div>
     </section>
 
-    <!-- 右側：タイマー表示 -->
-    <section class="display">
-      <!-- ★★★ 修正：最初は「超集中」表示に戻す ★★★ -->
-      <div id="phase">超集中</div>
-
-      <div id="timeLarge">00:00</div>
-      <div id="setInfo">セット: 0 / 0</div>
-
-      <div class="buttons">
-        <button id="startBtn" class="primary">スタート</button>
-        <button id="pauseBtn">一時停止</button>
-        <button id="resetBtn">リセット</button>
-        <button id="prevBtn">戻る</button>
-        <button id="back10Btn">-10秒</button>
-        <button id="skip10Btn">+10秒</button>
-        <button id="nextBtn">次へ</button>
-      </div>
-
-      <div class="extra">
-        <div id="status">最初に「スタート」を押すと音が許可されます。</div>
-      </div>
-    </section>
   </div>
 
   <script src="script.js"></script>
+
 </body>
 </html>
