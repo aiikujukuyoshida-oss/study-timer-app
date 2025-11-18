@@ -1,205 +1,115 @@
-:root{
-  --bg:#071021; 
-  --panel:#0f1114; 
-  --accent1:#2fb0ff; 
-  --accent2:#ff9a3c; 
-  --accent3:#7db86b;
+body {
+  margin: 0;
+  padding: 0;
+  background: #0c1833;
+  font-family: sans-serif;
+  color: #fff;
 }
 
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:#071021;
-  color:#fff;
-  font-family:system-ui,Roboto,Arial;
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-/* ================================
-      レイアウト（左右バランス）
-   ================================ */
-.wrap{
-  max-width:1100px;
-  margin:20px auto;
-  padding:10px;
-
-  display:flex;
-  gap:20px;
-  align-items:flex-start;
+/* --- メイン表示 --- */
+.display {
+  text-align: center;
+  margin-top: 10px;
 }
 
-/* 左側パネル ===================== */
-.controls{
-  background:linear-gradient(180deg,#0b0d10,#0f1114);
-  padding:18px;
-  border-radius:12px;
-  width:45%;      /* ← 左右バランス改善 */
+.phase {
+  font-size: 48px;
+  color: #b0b8d1;
+  margin-bottom: 10px;
 }
 
-/* タイトル */
-.controls h1{
-  margin:0 0 4px 0;
-  font-size:26px;
+.time-large {
+  font-size: 130px;
+  font-weight: bold;
+  color: #ffa64d;
+  letter-spacing: 5px;
 }
 
-.meta{
-  font-size:13px;
-  margin-bottom:10px;
-  color:#cfe9ff;
+.set-info {
+  margin-top: 5px;
+  font-size: 20px;
 }
 
-/* 行パーツ */
-.row{
-  display:flex;
-  gap:10px;
-  flex-wrap:nowrap;    /* ← 無駄改行防止 */
-  margin-bottom:10px;
+/* --- ボタン --- */
+.buttons {
+  text-align: center;
+  margin: 20px 0;
 }
 
-label{
-  flex:1;
-  min-width:120px;
-  font-size:14px;
-  color:#cfe9ff;
+.btn {
+  background: #2b6cb0;
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  margin: 4px;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
-select,
-input[type="range"]{
-  width:100%;
-  padding:8px;
-  border-radius:8px;
-  background:#06101a;
-  border:1px solid rgba(255,255,255,0.1);
-  color:#fff;
-  font-weight:700;
+.btn.primary {
+  background: #3182ce;
 }
 
-/* セット設定 */
-.set-row{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  flex-wrap:nowrap;   /* ← 改行抑制 */
-  margin-bottom:6px;
+/* --- 注意書き --- */
+.status-area {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #aaa;
 }
 
-.set-row input[type="number"]{
-  width:70px;
-  padding:6px;
-  border-radius:6px;
-  background:#06101a;
-  border:1px solid rgba(255,255,255,0.1);
-  color:#fff;
-  font-weight:700;
+/* --- セット設定 --- */
+.sets-area {
+  background: #111c3f;
+  border-radius: 10px;
+  padding: 20px;
 }
 
-.set-row select{
-  width:100px;   /* ← BGM 選択しやすく */
-  padding:6px;
-  border-radius:6px;
-  background:#06101a;
-  border:1px solid rgba(255,255,255,0.1);
-  color:#fff;
+.row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.preset-row{
-  display:flex;
-  gap:10px;
-  margin-top:10px;
+.row label {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
 }
 
-.preset-row button{
-  padding:8px 10px;
-  border-radius:8px;
-  border:none;
-  background:linear-gradient(90deg,var(--accent1),#60cfff);
-  color:#001;
-  font-weight:800;
-  cursor:pointer;
+#setsConfig {
+  margin-top: 15px;
 }
 
-/* ================================
-           右側（タイマー）
-   ================================ */
-.display{
-  background:var(--panel);
-  padding:20px;
-  border-radius:12px;
-  width:55%;       /* ← 広げてバランス良化 */
-  text-align:center;
+.set-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 
-/* phase（超集中など）中央揃え */
-#phase{
-  font-size:90px;        /* ← やや縮小して中央揃え */
-  color:#9aa3b2;
-  margin-bottom:10px;
-  line-height:1;
-  text-align:center;
+.set-row select,
+.set-row input {
+  padding: 4px 6px;
+  font-size: 15px;
 }
 
-/* タイマー（はみ出し防止） */
-#timeLarge{
-  font-size:165px;       /* ← はみ出し防止で縮小 */
-  font-weight:900;
-  margin:0 0 14px;
-  color:var(--accent2);
-  letter-spacing:2px;
-  text-align:center;
+.preset-row {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-/* セット情報 */
-#setInfo{
-  margin-bottom:14px;
-}
-
-/* ボタン群 ======================== */
-.buttons{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-.buttons button{
-  padding:8px 12px;
-  border-radius:8px;
-  border:none;
-  background:linear-gradient(90deg,var(--accent1),#60cfff);
-  color:#001;
-  font-weight:800;
-  cursor:pointer;
-  flex:0 0 auto;    /* ← 改行抑制 */
-}
-
-.primary{
-  background:linear-gradient(90deg,var(--accent3),#6fbf6b);
-  color:#021;
-}
-
-#status{
-  margin-top:12px;
-  color:#9aa3b2;
-  font-size:13px;
-  text-align:center;
-}
-
-/* ================================
-        スマホ向け最適化
-   ================================ */
-@media (max-width:520px){
-  .wrap{
-    flex-direction:column;
-  }
-
-  .controls,
-  .display{
-    width:100%;
-  }
-
-  #phase{font-size:42px;}
-  #timeLarge{font-size:88px;}
-
-  .row{flex-direction:column;}
-  .set-row{flex-direction:column; align-items:stretch;}
+.preset-btn {
+  padding: 10px 14px;
+  background: #1d4ed8;
+  border-radius: 6px;
+  border: none;
+  color: white;
 }
