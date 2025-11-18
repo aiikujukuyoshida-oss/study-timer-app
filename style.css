@@ -1,115 +1,158 @@
-body {
-  margin: 0;
-  padding: 0;
-  background: #0c1833;
-  font-family: sans-serif;
-  color: #fff;
+:root{
+  --bg:#071021;
+  --panel:#0f1114;
+  --accent1:#2fb0ff;
+  --accent2:#ff9a3c;
+  --accent3:#7db86b;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:radial-gradient(800px 300px at 10% 10%, #071021 0%, #071021 40%, #071021 100%);
+  color:#fff;
+  font-family:system-ui,Roboto,Arial;
 }
 
-/* --- メイン表示 --- */
-.display {
-  text-align: center;
-  margin-top: 10px;
+.container{
+  width:95%;
+  max-width:600px;
+  margin:18px auto;
 }
 
-.phase {
-  font-size: 48px;
-  color: #b0b8d1;
-  margin-bottom: 10px;
+.header{
+  text-align:center;
+  margin-bottom:14px;
+}
+.header h1{
+  margin:0;
+  font-size:26px;
+}
+.meta{
+  font-size:13px;
+  color:#b5c5d1;
 }
 
-.time-large {
-  font-size: 130px;
-  font-weight: bold;
-  color: #ffa64d;
-  letter-spacing: 5px;
+.controls{
+  background:linear-gradient(180deg,#0b0d10,#0f1114);
+  padding:14px;
+  border-radius:12px;
+  margin-bottom:18px;
 }
 
-.set-info {
-  margin-top: 5px;
-  font-size: 20px;
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:10px;
 }
 
-/* --- ボタン --- */
-.buttons {
-  text-align: center;
-  margin: 20px 0;
+label{
+  flex:1;
+  min-width:140px;
+  font-size:14px;
+  color:#cfe9ff;
 }
 
-.btn {
-  background: #2b6cb0;
-  color: #fff;
-  border: none;
-  padding: 12px 18px;
-  margin: 4px;
-  border-radius: 8px;
-  font-size: 16px;
+select,
+input[type="range"]{
+  width:100%;
+  padding:8px;
+  border-radius:8px;
+  background:#06101a;
+  border:1px solid rgba(255,255,255,0.03);
+  color:#fff;
+  font-weight:600;
 }
 
-.btn.primary {
-  background: #3182ce;
+.set-row{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  margin-bottom:6px;
 }
 
-/* --- 注意書き --- */
-.status-area {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #aaa;
+.set-row input[type="number"]{
+  width:90px;
+  padding:6px;
+  border-radius:6px;
+  background:#06101a;
+  border:1px solid rgba(255,255,255,0.03);
+  color:#fff;
 }
 
-/* --- セット設定 --- */
-.sets-area {
-  background: #111c3f;
-  border-radius: 10px;
-  padding: 20px;
+.set-row select{
+  flex:1;
+  padding:6px;
+  border-radius:6px;
+  background:#06101a;
+  border:1px solid rgba(255,255,255,0.03);
+  color:#fff;
 }
 
-.row {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.preset-row{
+  display:flex;
+  gap:8px;
+  margin-top:8px;
 }
 
-.row label {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
+.preset-row button{
+  flex:1;
+  padding:8px 10px;
+  border:none;
+  border-radius:8px;
+  background:linear-gradient(90deg,var(--accent1),#60cfff);
+  color:#001;
+  font-weight:700;
 }
 
-#setsConfig {
-  margin-top: 15px;
+.display{
+  background:var(--panel);
+  padding:20px 10px;
+  border-radius:12px;
+  text-align:center;
 }
 
-.set-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+#phase{
+  font-size:60px;
+  color:#9aa3b2;
 }
 
-.set-row select,
-.set-row input {
-  padding: 4px 6px;
-  font-size: 15px;
+#timeLarge{
+  font-size:140px;
+  font-weight:900;
+  margin:8px 0;
+  color:var(--accent2);
 }
 
-.preset-row {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  justify-content:center;
 }
 
-.preset-btn {
-  padding: 10px 14px;
-  background: #1d4ed8;
-  border-radius: 6px;
-  border: none;
-  color: white;
+.buttons button{
+  padding:8px 10px;
+  border-radius:8px;
+  border:none;
+  background:linear-gradient(90deg,var(--accent1),#60cfff);
+  color:#001;
+  font-weight:800;
+}
+
+.primary{
+  background:linear-gradient(90deg,var(--accent3),#8ddf88);
+}
+
+.status{
+  margin-top:10px;
+  font-size:13px;
+  color:#9aa3b2;
+}
+
+@media (max-width:520px){
+  #timeLarge{ font-size:90px; }
+  #phase{ font-size:40px; }
 }
