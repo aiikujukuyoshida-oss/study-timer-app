@@ -7,61 +7,54 @@
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-
-    <header class="header">
+  <div class="wrap">
+    <header>
       <h1>学習タイマー「超集中」</h1>
-      <div class="meta">ダーク・メタリック | デフォルトBGM: Fire</div>
+      <div class="meta">ダーク・メタリック｜デフォルトBGM: Fire</div>
     </header>
 
     <section class="controls">
-
       <div class="row">
         <label>セット数
           <select id="setCountSelect"></select>
         </label>
-
         <label>音量
-          <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6">
+          <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
         </label>
-
-        <label><input id="mute" type="checkbox"> ミュート</label>
+        <label><input id="mute" type="checkbox" id="muteBox" /> ミュート</label>
       </div>
 
-      <!-- JS で各セット行が入る -->
-      <div id="setsConfig" class="sets-config"></div>
+      <div id="setsConfig" class="sets-config">
+        <!-- set rows injected here -->
+      </div>
 
       <div class="preset-row">
         <button id="savePreset1">保存1</button>
         <button id="savePreset2">保存2</button>
         <button id="savePreset3">保存3</button>
-        <select id="presetSelect">
-          <option value="">プリセットを選択</option>
-        </select>
+        <select id="presetSelect"><option value="">プリセットを選択</option></select>
       </div>
-
     </section>
 
     <section class="display">
-      <div id="phase">超集中</div>
+      <div id="phase">準備中</div>
       <div id="timeLarge">00:00</div>
       <div id="setInfo">セット: 0 / 0</div>
-
-      <div class="buttons">
-        <button id="startBtn" class="primary">スタート</button>
-        <button id="pauseBtn">一時停止</button>
-        <button id="resetBtn">リセット</button>
-        <button id="prevBtn">戻る</button>
-        <button id="back10Btn">-10秒</button>
-        <button id="skip10Btn">+10秒</button>
-        <button id="nextBtn">次へ</button>
-      </div>
-
-      <div id="status" class="status">
-        最初に「スタート」を押すと音が許可されます。
-      </div>
     </section>
 
+    <section class="controls buttons">
+      <button id="startBtn" class="primary">スタート</button>
+      <button id="pauseBtn">一時停止</button>
+      <button id="resetBtn">リセット</button>
+      <button id="prevBtn">戻る</button>
+      <button id="back10Btn">-10秒</button>
+      <button id="skip10Btn">+10秒</button>
+      <button id="nextBtn">次へ</button>
+    </section>
+
+    <section class="extra">
+      <div id="status">最初に「スタート」を押すと音が許可されます。</div>
+    </section>
   </div>
 
 <script src="script.js"></script>
