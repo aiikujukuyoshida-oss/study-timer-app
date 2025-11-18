@@ -8,12 +8,12 @@
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <h1>学習タイマー「超集中」</h1>
-      <div class="meta">ダーク・メタリック｜デフォルトBGM: Fire</div>
-    </header>
-
     <section class="controls">
+      <header>
+        <h1>学習タイマー「超集中」</h1>
+        <div class="meta">ダーク・メタリック｜デフォルトBGM: Fire</div>
+      </header>
+
       <div class="row">
         <label>セット数
           <select id="setCountSelect"></select>
@@ -21,12 +21,10 @@
         <label>音量
           <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
         </label>
-        <label><input id="mute" type="checkbox" id="muteBox" /> ミュート</label>
+        <label><input id="mute" type="checkbox" /> ミュート</label>
       </div>
 
-      <div id="setsConfig" class="sets-config">
-        <!-- set rows injected here -->
-      </div>
+      <div id="setsConfig" class="sets-config"></div>
 
       <div class="preset-row">
         <button id="savePreset1">保存1</button>
@@ -40,20 +38,20 @@
       <div id="phase">準備中</div>
       <div id="timeLarge">00:00</div>
       <div id="setInfo">セット: 0 / 0</div>
-    </section>
 
-    <section class="controls buttons">
-      <button id="startBtn" class="primary">スタート</button>
-      <button id="pauseBtn">一時停止</button>
-      <button id="resetBtn">リセット</button>
-      <button id="prevBtn">戻る</button>
-      <button id="back10Btn">-10秒</button>
-      <button id="skip10Btn">+10秒</button>
-      <button id="nextBtn">次へ</button>
-    </section>
+      <div class="buttons">
+        <button id="startBtn" class="primary">スタート</button>
+        <button id="pauseBtn">一時停止</button>
+        <button id="resetBtn">リセット</button>
+        <button id="prevBtn">戻る</button>
+        <button id="back10Btn">-10秒</button>
+        <button id="skip10Btn">+10秒</button>
+        <button id="nextBtn">次へ</button>
+      </div>
 
-    <section class="extra">
-      <div id="status">最初に「スタート」を押すと音が許可されます。</div>
+      <div class="extra">
+        <div id="status">最初に「スタート」を押すと音が許可されます。</div>
+      </div>
     </section>
   </div>
 
