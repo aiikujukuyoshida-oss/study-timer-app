@@ -178,7 +178,7 @@ function applyVolume(){
 // UI update
 function updateUI(){
   timeEl.textContent = secToMMSS(remaining);
-  phaseEl.textContent = (phase === 'focus') ? '集中タイム' : '休憩タイム';
+  phaseEl.textContent = (phase === 'focus') ? '超集中' : '休憩タイム';
   setInfo.textContent = `セット: ${Math.min(currentIndex+1, setCount)} / ${setCount}`;
 }
 
